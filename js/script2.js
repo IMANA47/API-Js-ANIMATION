@@ -26,18 +26,19 @@ box.addEventListener('mouseover', function() {
     anime({
         targets: '#box',
         backgroundColor: '#FF6347', // Tomate
-        duration: 800,
+        duration: 1000,
         easing: 'easeInOutQuad'
     });
 });
 
-// 4. Chnager la forme et la couleur quand la souris sort
+// 4. Changer la forme et la couleur quand la souris sort
 box.addEventListener('mouseout', function() {
     anime({
         targets: '#box',
         left: '240px',
         backgroundColor: '#FFF',
         borderRadius: ['0%', '50%'],
+        duration: 1000,
         easing: 'easeInOutQuad'
     });
 });
@@ -46,8 +47,8 @@ box.addEventListener('mouseout', function() {
 document.addEventListener('keydown', function() {
     anime({
         targets: '#box',
-        scale: [1, 1.2], // Agrandissement et retour à la taille normale
-        duration: 500,
-        easing: 'easeInOutQuad'
+        translateX: 250,
+        scale: 2,
+        rotate: '1turn'
     });
 });
