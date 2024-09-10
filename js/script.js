@@ -13,3 +13,22 @@ box.addEventListener('dblclick', function() {
     box.style.height = '350px';
     box.textContent = 'Double Clicked!';
 });
+
+// Mouseover event: Change hover border color
+box.addEventListener('mouseover', function() {
+    box.style.borderColor = 'red';
+    box.textContent = 'Mouse Over!';
+});
+
+// Mouseout event: Reset the border when leaving the box
+box.addEventListener('mouseout', function() {
+    box.style.borderColor = 'blue';
+    box.textContent = 'Hover, Click, and More!';
+});
+
+// Keydown event: Reduce the box when a keyboard key is pressed
+document.addEventListener('keydown', function() {
+    box.style.width = '300px';
+    box.style.height = '200px';
+    box.textContent = 'Key Pressed!';
+});
