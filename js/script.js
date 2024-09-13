@@ -4,11 +4,11 @@ const box = document.getElementById('box');
 box.addEventListener('click', function() {
     anime({
         targets: '#box',
-        translateX: 1000,
-        duration: 4000,
+        translateX: 2000,
+        duration: 2000,
         direction: 'alternate',
         easing: 'easeInOutQuad',
-        loop: 1
+        loop: 3
     });
 });
 
@@ -17,21 +17,21 @@ box.addEventListener('dblclick', function() {
     anime({
         targets: '#box',
         translateX: {
-            value: 1000,
-            duration: 1000
+            value: 3000,
+            duration: 2000
           },
           rotate: {
-            value: 360,
-            duration: 2000,
+            value: 180,
+            duration: 1000,
             easing: 'easeInOutSine'
           },
           scale: {
-            value: 1.5,
-            duration: 1800,
-            delay: 1000,
+            value: 2,
+            duration: 1000,
+            delay: 500,
             easing: 'easeInOutQuart'
           },
-          delay: 250
+          delay: 1250
     });
 });
 
@@ -39,10 +39,10 @@ box.addEventListener('dblclick', function() {
 box.addEventListener('mouseover', function() {
     anime({
         targets: '#box',
-        width: '500px',
-        height: '400px',
-        backgroundColor: '#FF6347',
-        borderRadius: ['0%', '25%'],
+        width: '200px',
+        height: '800px',
+        backgroundColor: '#FF2103',
+        borderRadius: ['0%', '50%'],
         duration: 1500,
         easing: 'easeInOutQuad'
     });
@@ -54,8 +54,8 @@ box.addEventListener('mouseout', function() {
         targets: '#box',
         width: '400px',
         height: '300px',
-        backgroundColor: '#abd7e6',
-        borderRadius: ['25%', '0%'],
+        backgroundColor: '#ff6755',
+        borderRadius: ['50%', '0%'],
         duration: 1500,
         easing: 'easeInOutQuad'
     });
@@ -66,13 +66,13 @@ document.addEventListener('keydown', function() {
     anime({
         targets: '#box',
         keyframes: [
-            {translateY: -100},
-            {translateX: 1000},
-            {translateY: 100},
+            {translateY: -300},
+            {translateX: 3000},
+            {translateY: 500},
             {translateX: 0},
             {translateY: 0}
           ],
-        duration: 8000,
+        duration: 3000,
         easing: 'easeOutElastic(1, .8)',
         loop: 1
     });
