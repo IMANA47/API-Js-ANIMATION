@@ -1,46 +1,79 @@
-$('.button--bubble').each(function() {
-    var $circlesTopLeft = $(this).parent().find('.circle.top-left');
-    var $circlesBottomRight = $(this).parent().find('.circle.bottom-right');
-  
-    var tl = new TimelineLite();
-    var tl2 = new TimelineLite();
-  
-    var btTl = new TimelineLite({ paused: true });
-  
-    tl.to($circlesTopLeft, 1.2, { x: -25, y: -25, scaleY: 2, ease: SlowMo.ease.config(0.1, 0.7, false) });
-    tl.to($circlesTopLeft.eq(0), 0.1, { scale: 0.2, x: '+=6', y: '-=2' });
-    tl.to($circlesTopLeft.eq(1), 0.1, { scaleX: 1, scaleY: 0.8, x: '-=10', y: '-=7' }, '-=0.1');
-    tl.to($circlesTopLeft.eq(2), 0.1, { scale: 0.2, x: '-=15', y: '+=6' }, '-=0.1');
-    tl.to($circlesTopLeft.eq(0), 1, { scale: 0, x: '-=5', y: '-=15', opacity: 0 });
-    tl.to($circlesTopLeft.eq(1), 1, { scaleX: 0.4, scaleY: 0.4, x: '-=10', y: '-=10', opacity: 0 }, '-=1');
-    tl.to($circlesTopLeft.eq(2), 1, { scale: 0, x: '-=15', y: '+=5', opacity: 0 }, '-=1');
-  
-    var tlBt1 = new TimelineLite();
-    var tlBt2 = new TimelineLite();
-    
-    tlBt1.set($circlesTopLeft, { x: 0, y: 0, rotation: -45 });
-    tlBt1.add(tl);
-  
-    tl2.set($circlesBottomRight, { x: 0, y: 0 });
-    tl2.to($circlesBottomRight, 1.1, { x: 30, y: 30, ease: SlowMo.ease.config(0.1, 0.7, false) });
-    tl2.to($circlesBottomRight.eq(0), 0.1, { scale: 0.2, x: '-=6', y: '+=3' });
-    tl2.to($circlesBottomRight.eq(1), 0.1, { scale: 0.8, x: '+=7', y: '+=3' }, '-=0.1');
-    tl2.to($circlesBottomRight.eq(2), 0.1, { scale: 0.2, x: '+=15', y: '-=6' }, '-=0.2');
-    tl2.to($circlesBottomRight.eq(0), 1, { scale: 0, x: '+=5', y: '+=15', opacity: 0 });
-    tl2.to($circlesBottomRight.eq(1), 1, { scale: 0.4, x: '+=7', y: '+=7', opacity: 0 }, '-=1');
-    tl2.to($circlesBottomRight.eq(2), 1, { scale: 0, x: '+=15', y: '-=5', opacity: 0 }, '-=1');
-    
-    tlBt2.set($circlesBottomRight, { x: 0, y: 0, rotation: 45 });
-    tlBt2.add(tl2);
-  
-    btTl.add(tlBt1);
-    btTl.to($(this).parent().find('.button.effect-button'), 0.8, { scaleY: 1.1 }, 0.1);
-    btTl.add(tlBt2, 0.2);
-    btTl.to($(this).parent().find('.button.effect-button'), 1.8, { scale: 1, ease: Elastic.easeOut.config(1.2, 0.4) }, 1.2);
-  
-    btTl.timeScale(2.6);
-  
-    $(this).on('mouseover', function() {
-      btTl.restart();
+const box = document.getElementById('box');
+
+// 1. Animation au clic
+box.addEventListener('click', function() {
+    anime({
+        targets: '#box',
+        translateX: 1000,
+        duration: 4000,
+        direction: 'alternate',
+        easing: 'easeInOutQuad',
+        loop: 1
     });
-  });
+});
+
+// 2. Animation au double clic
+box.addEventListener('dblclick', function() {
+    anime({
+        targets: '#box',
+        translateX: {
+            value: 1000,
+            duration: 1000
+          },
+          rotate: {
+            value: 360,
+            duration: 2000,
+            easing: 'easeInOutSine'
+          },
+          scale: {
+            value: 1.5,
+            duration: 1800,
+            delay: 1000,
+            easing: 'easeInOutQuart'
+          },
+          delay: 250
+    });
+});
+
+// 3. Changement de taille, de forme et de couleur au survol
+box.addEventListener('mouseover', function() {
+    anime({
+        targets: '#box',
+        width: '500px',
+        height: '400px',
+        backgroundColor: '#FF6347',
+        borderRadius: ['0%', '25%'],
+        duration: 1500,
+        easing: 'easeInOutQuad'
+    });
+});
+
+// 4. Revenir à l'état initial quand la souris sort
+box.addEventListener('mouseout', function() {
+    anime({
+        targets: '#box',
+        width: '400px',
+        height: '300px',
+        backgroundColor: '#abd7e6',
+        borderRadius: ['25%', '0%'],
+        duration: 1500,
+        easing: 'easeInOutQuad'
+    });
+});
+
+// 5. Animation lors de l'appui d'une touche du clavier
+document.addEventListener('keydown', function() {
+    anime({
+        targets: '#box',
+        keyframes: [
+            {translateY: -100},
+            {translateX: 1000},
+            {translateY: 100},
+            {translateX: 0},
+            {translateY: 0}
+          ],
+        duration: 8000,
+        easing: 'easeOutElastic(1, .8)',
+        loop: 1
+    });
+});
